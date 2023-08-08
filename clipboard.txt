@@ -1,0 +1,27 @@
+Certainly! Below is a simplified list in a 4mat format with bold text for the details you should ask from the student:
+
+1. **Full Name**: Ask for the student's full legal name, including first name, middle name (if applicable), and last name.
+
+2. **Student ID**: Assign a unique identifier to each student for easy reference and record-keeping.
+
+3. **Date of Birth**: Collect the student's date of birth for age verification and to manage their academic records according to their age.
+
+4. **Address**: Request the student's residential address, which can be useful for communication and determining their geographical location.
+
+5. **Contact Information**: Ask for the student's phone number and email address as primary contact details.
+
+6. **Parent/Guardian Information**: Collect contact details and relevant information about the student's parent(s) or guardian(s) for emergency purposes and communication.
+
+7. **Course/Program Details**: Record the course or program in which the student is enrolled, along with the academic year or semester.
+
+8. **Attendance**: Keep track of the student's attendance in classes or activities.
+
+9. **Grades and Academic Performance**: Record the student's grades and academic progress in different subjects or courses.
+
+10. **Extracurricular Activities**: Collect information about the student's participation in extracurricular activities, clubs, or sports.
+
+11. **Health Information**: Ask for any relevant health-related information or medical conditions that might affect the student's participation or well-being in the academic environment.
+
+12. **Photo**: Optionally, you may request a photo of the student for identification purposes.
+
+Remember to design your app's interface to make it user-friendly and easily navigable for students to provide these details. Additionally, follow best practices for data security and privacy to protect the students' information.
