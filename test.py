@@ -5,6 +5,7 @@ def on_entry_click(event):
         entry.delete(0, "end")  # Clear the placeholder text when clicked
         entry.config(fg="black")  # Change text color to black
 
+
 def on_focus_out(event):
     if entry.get() == "":
         entry.insert(0, "Enter your text here")

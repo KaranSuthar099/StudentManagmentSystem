@@ -4,7 +4,7 @@ Certainly! Below is a simplified list in a 4mat format with bold text for the de
 
 2. **Student ID**: Assign a unique identifier to each student for easy reference and record-keeping.
 
-3. **Date of Birth**: Collect the student's date of birth for age verification and to manage their academic records according to their age.
+3.) **Date of Birth**: Collect the student's date of birth for age verification and to manage their academic records according to their age.
 
 4. **Address**: Request the student's residential address, which can be useful for communication and determining their geographical location.
 
