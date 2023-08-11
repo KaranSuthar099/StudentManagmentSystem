@@ -1,23 +1,33 @@
 import tkinter as tk
+from tkinter import ttk
+from ttkthemes import ThemedStyle
 
-def on_entry_click(event):
-    if entry.get() == "Enter your text here":
-        entry.delete(0, "end")  # Clear the placeholder text when clicked
-        entry.config(fg="black")  # Change text color to black
+def perform_search():
+    query = search_entry.get()
+    search_results_label.config(text=f"Searching for: {query}")
 
-
-def on_focus_out(event):
-    if entry.get() == "":
-        entry.insert(0, "Enter your text here")
-        entry.config(fg="gray")  # Change text color back to gray
-
+# Create the main window
 root = tk.Tk()
-root.geometry("300x100")
+root.title("Search Bar Example")
 
-entry = tk.Entry(root, fg="gray")
-entry.insert(0, "Enter your text here")
-entry.bind("<FocusIn>", on_entry_click)
-entry.bind("<FocusOut>", on_focus_out)
-entry.pack()
+# Apply the themed style to the entire application
+style = ThemedStyle(root)
+style.set_theme("arc")  # You can choose a theme from available options
+
+# Create and place the search entry widget
+search_entry = ttk.Entry(root, width=40)
+search_entry.pack(padx=10, pady=10)
+
+# Create and place the search button
+search_button = ttk.Button(root, text="Search", command=perform_search)
+search_button.pack()
+
+# Create and place a label to display search results or status
+search_results_label = ttk.Label(root, text="", font=("Helvetica", 12))
+search_results_label.pack(pady=10)
 
 root.mainloop()
+
+
+
+

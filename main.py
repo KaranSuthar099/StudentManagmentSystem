@@ -2,7 +2,7 @@ import customtkinter as c
 import tkinter as tk
 
 c.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
-c.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
+c.set_default_color_theme("green")  # Themes: "blue" (standard), "green", "dark-blue"
 
 window = c.CTk()
 window.geometry("1280x720")
@@ -54,10 +54,10 @@ EntryDay = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Day")
 EntryMonth = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Month")
 EntryYear = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Year")
 
-RadioVal=tk.IntVar(value = 0)
+RadioVal = tk.IntVar(value=0)
 
-EntryMaleGender = c.CTkRadioButton(tabs.tab("Insert Student Data"), variable=RadioVal, value=0)
-EntryFemaleGender = c.CTkRadioButton(tabs.tab("Insert Student Data"), variable=RadioVal, value=1)
+EntryMaleGender = c.CTkRadioButton(tabs.tab("Insert Student Data"), text="Male", variable=RadioVal, value=0)
+EntryFemaleGender = c.CTkRadioButton(tabs.tab("Insert Student Data"), text="Female", variable=RadioVal, value=1)
 
 EntryPhoneNumber = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Enter Phone number")
 EntryGuardianName = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Enter Guardian's Name")
@@ -78,10 +78,14 @@ EntryYear.grid(row=4, column=4, padx=5, pady=5)
 EntryMaleGender.grid(row=5, column=2, padx=5, pady=5)
 EntryFemaleGender.grid(row=5, column=3, padx=5, pady=5)
 
-EntryPhoneNumber.grid(row=6, column=2, padx=5, pady=5)
-EntryGuardianName.grid(row=7, column=2, padx=5, pady=5)
-EntryAddress.grid(row=8, column=2, padx=5, pady=5)
+EntryPhoneNumber.grid(row=6, column=2, padx=5, pady=5, columnspan=2, sticky="ew")
+EntryGuardianName.grid(row=7, column=2, padx=5, pady=5, columnspan=2, sticky="ew")
+EntryAddress.grid(row=8, column=2, padx=5, pady=5, columnspan=2, sticky="news")
 
-tabs.grid(row=0, column=1, sticky="news", rowspan=10, columnspan=9, padx=10, pady=10)
+tabs.grid(row=0, column=1, columnspan=4, rowspan=7, sticky="news", padx=10, pady=10)
+
+SearchBar = c.CTkEntry(window, placeholder_text="Search")
+SearchBar.grid(row=0, column= 5, sticky="ew")
+
 
 window.mainloop()
