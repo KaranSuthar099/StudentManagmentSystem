@@ -1,4 +1,5 @@
 import customtkinter as c
+import tkinter as tk
 
 c.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
 c.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
@@ -7,8 +8,8 @@ window = c.CTk()
 window.geometry("1280x720")
 window.title("School Management System")
 
-window.columnconfigure([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], weight=1)
-window.rowconfigure([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], weight=1)
+window.columnconfigure([0, 1, 2, 3, 4, 5, 6], weight=1)
+window.rowconfigure([0, 1, 2, 3, 4, 5, 6], weight=1)
 # window.rowconfigure(1, weight=9)
 
 sidebar = c.CTkFrame(window, corner_radius=20, width=120)
@@ -30,7 +31,7 @@ Class = c.CTkLabel(tabs.tab("Insert Student Data"), text="Class")
 DateOfBirth = c.CTkLabel(tabs.tab("Insert Student Data"), text="DateOfBirth")
 Gender = c.CTkLabel(tabs.tab("Insert Student Data"), text="Gender")
 PhoneNumber = c.CTkLabel(tabs.tab("Insert Student Data"), text="Phone")
-GurdianName = c.CTkLabel(tabs.tab("Insert Student Data"), text="GurdianName")
+GuardianName = c.CTkLabel(tabs.tab("Insert Student Data"), text="GuardianName")
 Address = c.CTkLabel(tabs.tab("Insert Student Data"), text="Address")
 
 RollNo.grid(row=1, column=1)
@@ -39,25 +40,46 @@ Class.grid(row=3, column=1)
 DateOfBirth.grid(row=4, column=1)
 Gender.grid(row=5, column=1)
 PhoneNumber.grid(row=6, column=1)
-GurdianName.grid(row=7, column=1)
+GuardianName.grid(row=7, column=1)
 Address.grid(row=8, column=1)
 
 EntryRollNumber = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Enter Roll Number")
-EntryName = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Enter Name")
+
+EntryFirstName = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="First Name")
+EntrySecondName = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Second Name")
+
 EntryClass = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Enter Class")
-EntryDateOfBirth = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Enter DateOfBirth")
-EntryGender = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Enter Gender")
+
+EntryDay = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Day")
+EntryMonth = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Month")
+EntryYear = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Year")
+
+RadioVal=tk.IntVar(value = 0)
+
+EntryMaleGender = c.CTkRadioButton(tabs.tab("Insert Student Data"), variable=RadioVal, value=0)
+EntryFemaleGender = c.CTkRadioButton(tabs.tab("Insert Student Data"), variable=RadioVal, value=1)
+
 EntryPhoneNumber = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Enter Phone number")
-EntryGurdianName = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Enter Gurdian's Name")
-EntryAddress = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Enter Address ")
+EntryGuardianName = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Enter Guardian's Name")
+
+EntryAddress = c.CTkTextbox(tabs.tab("Insert Student Data"), width=30)
 
 EntryRollNumber.grid(row=1, column=2, padx=5, pady=5)
-EntryName.grid(row=2, column=2, padx=5, pady=5)
+
+EntryFirstName.grid(row=2, column=2, padx=5, pady=5)
+EntrySecondName.grid(row=2, column=3, padx=5, pady=5)
+
 EntryClass.grid(row=3, column=2, padx=5, pady=5)
-EntryDateOfBirth.grid(row=4, column=2, padx=5, pady=5)
-EntryGender.grid(row=5, column=2, padx=5, pady=5)
+
+EntryDay.grid(row=4, column=2, padx=5, pady=5)
+EntryMonth.grid(row=4, column=3, padx=5, pady=5)
+EntryYear.grid(row=4, column=4, padx=5, pady=5)
+
+EntryMaleGender.grid(row=5, column=2, padx=5, pady=5)
+EntryFemaleGender.grid(row=5, column=3, padx=5, pady=5)
+
 EntryPhoneNumber.grid(row=6, column=2, padx=5, pady=5)
-EntryGurdianName.grid(row=7, column=2, padx=5, pady=5)
+EntryGuardianName.grid(row=7, column=2, padx=5, pady=5)
 EntryAddress.grid(row=8, column=2, padx=5, pady=5)
 
 tabs.grid(row=0, column=1, sticky="news", rowspan=10, columnspan=9, padx=10, pady=10)
