@@ -8,17 +8,17 @@ window = c.CTk()
 window.geometry("1280x720")
 window.title("School Management System")
 
-window.columnconfigure([0, 1, 2, 3, 4], weight=1, uniform="uniform columns")
-window.rowconfigure([0, 1, 2, 3, 4, 5, 6], weight=1, uniform="uniform rows")
+window.columnconfigure((0, 1, 2, 3, 4, 5), weight=1, uniform="uniform columns")
+window.rowconfigure((0, 1, 2, 3, 4, 5, 6), weight=1, uniform="uniform rows")
 # window.rowconfigure(1, weight=9)
 
 sidebar = c.CTkFrame(window, corner_radius=20, width=120)
-sidebar.grid(column=0, row=0, rowspan=10, sticky="news", padx=10, pady=10)
+sidebar.grid(column=0, row=0, rowspan=7, sticky="news", padx=10, pady=10)
 
 Title = c.CTkLabel(sidebar, text="SMS", height=10, width=20, font=c.CTkFont(size=30, weight="bold"))
 Title.grid(row=0, column=0, sticky="ew", padx=40, pady=40)
 
-tabs = c.CTkTabview(window, corner_radius=20)
+tabs = c.CTkTabview(window, corner_radius=20, width=400)
 
 tabs.add("Insert Student Data")
 tabs.add("Update Student Data")
@@ -81,6 +81,23 @@ EntryPhoneNumber.grid(row=5, column=2, padx=5, pady=5, columnspan=2, sticky="ew"
 EntryGuardianName.grid(row=6, column=2, padx=5, pady=5, columnspan=2, sticky="ew")
 EntryAddress.grid(row=7, column=2, padx=5, pady=5, columnspan=2, sticky="news")
 
-tabs.grid(row=0, column=1, columnspan=2, rowspan=6, sticky="news", padx=10, pady=10)
+tabs.grid(row=0, column=1, columnspan=4, rowspan=7, sticky="news", padx=10, pady=10)
+
+# making a new frame
+SearchFrame = c.CTkFrame(window, corner_radius=20)
+
+SearchFrame.rowconfigure((0, 1, 2, 3, 4, 5, 6), weight=1, uniform="uniform")
+SearchFrame.rowconfigure((0, 1, 2), weight=1, uniform="uniform")
+SearchFrame.grid(row=0, column=5, rowspan=7, columnspan=3, sticky="news", padx=10, pady=10)
+
+SearchBar = c.CTkEntry(SearchFrame, placeholder_text="S e a r c h", width=200)
+SearchBar.grid(row=0, column=0, sticky="sew", padx=10, pady=10)
+
+SearchButton = c.CTkButton(SearchFrame, text="Search")
+SearchButton.grid(row=0, column=2, sticky="sew", padx=[5, 20], pady=10)
+
+SearchTable = c.CTkOptionMenu(SearchFrame, values=["Student Table", "Result Table"], dynamic_resizing=True)
+SearchTable.grid(row=1, column=0, sticky="ns", padx=[20, 5], pady=10)
+
 
 window.mainloop()
