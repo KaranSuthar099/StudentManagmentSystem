@@ -45,7 +45,7 @@ Address.grid(row=7, column=1)
 EntryRollNumber = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Enter Roll Number")
 
 EntryFirstName = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="First Name")
-EntrySecondName = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Second Name")
+EntrySecondName = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Last Name")
 
 EntryClass = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Enter Class")
 
@@ -62,6 +62,8 @@ EntryPhoneNumber = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text=
 EntryGuardianName = c.CTkEntry(tabs.tab("Insert Student Data"), placeholder_text="Enter Guardian's Name")
 
 EntryAddress = c.CTkTextbox(tabs.tab("Insert Student Data"), width=30)
+
+EnterButton = c.CTkButton(tabs.tab("Insert Student Data"), text="Enter")
 
 EntryRollNumber.grid(row=0, column=2, padx=5, pady=5)
 
@@ -81,6 +83,8 @@ EntryPhoneNumber.grid(row=5, column=2, padx=5, pady=5, columnspan=2, sticky="ew"
 EntryGuardianName.grid(row=6, column=2, padx=5, pady=5, columnspan=2, sticky="ew")
 EntryAddress.grid(row=7, column=2, padx=5, pady=5, columnspan=2, sticky="news")
 
+EnterButton.grid(row=8, column=2, padx=5, pady=20, columnspan=2, sticky="news")
+
 tabs.grid(row=0, column=1, columnspan=4, rowspan=7, sticky="news", padx=10, pady=10)
 
 # making a new frame
@@ -91,13 +95,12 @@ SearchFrame.rowconfigure((0, 1, 2), weight=1, uniform="uniform")
 SearchFrame.grid(row=0, column=5, rowspan=7, columnspan=3, sticky="news", padx=10, pady=10)
 
 SearchBar = c.CTkEntry(SearchFrame, placeholder_text="S e a r c h", width=200)
-SearchBar.grid(row=0, column=0, sticky="sew", padx=10, pady=10)
+SearchBar.grid(row=0, column=0, sticky="sew", padx=10, pady=10, columnspan=2)
 
 SearchButton = c.CTkButton(SearchFrame, text="Search")
-SearchButton.grid(row=0, column=2, sticky="sew", padx=[5, 20], pady=10)
+SearchButton.grid(row=0, column=2, sticky="sew", padx=[5, 5], pady=10)
 
-SearchTable = c.CTkOptionMenu(SearchFrame, values=["Student Table", "Result Table"], dynamic_resizing=True)
-SearchTable.grid(row=1, column=0, sticky="ns", padx=[20, 5], pady=10)
-
+SelectTable = c.CTkOptionMenu(SearchFrame, values=["Student Table", "Result Table"])
+SelectTable.grid(row=1, column=0, sticky="wen", padx=10, pady=10)
 
 window.mainloop()
