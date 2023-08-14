@@ -2,7 +2,40 @@ import customtkinter as c
 import tkinter as tk
 
 c.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
-c.set_default_color_theme("green")  # Themes: "blue" (standard), "green", "dark-blue"
+c.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"
+
+flagFirstRun = 0
+value_check = 0
+
+def SelectUpdateValue(choice):
+    UpdateName.configure(text="Enter "+choice)
+    global DynamicWidget
+
+    # DynamicWidget = c.CTkEntry(tabs.tab("Update Student Data"), placeholder_text="Enter Name")
+    DynamicWidget.destroy()
+
+    if choice == "Name":
+        DynamicWidget = c.CTkEntry(tabs.tab("Update Student Data"), placeholder_text="Enter Namrtyerhte")
+        DynamicWidget.grid(row=1, column=0)
+    elif choice == "Class":
+        DynamicWidget = c.CTkEntry(tabs.tab("Update Student Data"), placeholder_text="Enter Namertherhrthe")
+        DynamicWidget.grid(row=1, column=0)
+    elif choice == "Date Of Birth":
+        DynamicWidget = c.CTkEntry(tabs.tab("Update Student Data"), placeholder_text="Enter Narhertherthrhme")
+        DynamicWidget.grid(row=1, column=0)
+    elif choice == "Gender":
+        DynamicWidget = c.CTkEntry(tabs.tab("Update Student Data"), placeholder_text="Enter Nauyikuyikme")
+        DynamicWidget.grid(row=1, column=0)
+    elif choice == "Phone Number":
+        DynamicWidget = c.CTkEntry(tabs.tab("Update Student Data"), placeholder_text="Enter Nazxcvbxzcvme")
+        DynamicWidget.grid(row=1, column=0)
+    elif choice == "Guardian's Name":
+        DynamicWidget = c.CTkEntry(tabs.tab("Update Student Data"), placeholder_text="Enter Naqwerqwerme")
+        DynamicWidget.grid(row=1, column=0)
+    elif choice == "Address":
+        DynamicWidget = c.CTkEntry(tabs.tab("Update Student Data"), placeholder_text="Enter Namn2rr354e")
+        DynamicWidget.grid(row=1, column=0)
+
 
 window = c.CTk()
 window.geometry("1280x720")
@@ -102,5 +135,24 @@ SearchButton.grid(row=0, column=2, sticky="sew", padx=[5, 5], pady=10)
 
 SelectTable = c.CTkOptionMenu(SearchFrame, values=["Student Table", "Result Table"])
 SelectTable.grid(row=1, column=0, sticky="wen", padx=10, pady=10)
+
+# update student tab
+
+updateVar = tk.StringVar()
+updateVar.set("Name")
+
+UpdateSelect = c.CTkOptionMenu(tabs.tab("Update Student Data"), width=500, command=SelectUpdateValue, variable=updateVar
+                               , values=["Name", "Class",
+                                         "Date Of Birth", "Gender",
+                                         "Phone Number", "Guardian's Name",
+                                         "Address"])
+UpdateSelect.grid(row=0, column=0, columnspan=4, sticky="ew", padx=5, pady=5)
+
+UpdateName = c.CTkLabel(tabs.tab("Update Student Data"), text="Name")
+UpdateName.grid(row=1, column=0)
+
+DynamicWidget = c.CTkEntry(tabs.tab("Update Student Data"), placeholder_text="Enter Name")
+DynamicWidget.grid(row=1, column=0)
+
 
 window.mainloop()
