@@ -9,6 +9,21 @@ flagFirstRun = 0
 value_check = 0
 
 
+def removeFocusSidebar(event):
+    # Remove focus from the widget that currently has focus
+    sidebar.focus()
+
+
+def removeFocusSearchFrame(event):
+    # Remove focus from the widget that currently has focus
+    SearchFrame.focus()
+
+
+def removeFocustabs(event):
+    # Remove focus from the widget that currently has focus
+    tabs.focus_set()
+
+
 def SelectUpdateValue(choice):
     dynamicLabel.configure(text="Enter " + choice)
     global DynamicWidget
@@ -49,11 +64,15 @@ window.rowconfigure((0, 1, 2, 3, 4, 5, 6), weight=1, uniform="uniform rows")
 # Side Frame
 sidebar = c.CTkFrame(window, corner_radius=20, width=120)
 sidebar.grid(column=0, row=0, rowspan=7, sticky="news", padx=10, pady=10)
+
+sidebar.bind('<Button-1>', removeFocusSidebar)
+
 # Side Frame
 
 # Frame Search Data
 
 SearchFrame = c.CTkFrame(window, corner_radius=20)
+SearchFrame.bind('<Button-1>', removeFocusSearchFrame)
 
 SearchFrame.rowconfigure((0, 1, 2, 3, 4, 5, 6), weight=1, uniform="uniform")
 SearchFrame.rowconfigure((0, 1, 2), weight=1, uniform="uniform")
@@ -78,6 +97,8 @@ tabs = c.CTkTabview(window, corner_radius=20, width=400)
 tabs.add("Insert Student Data")
 tabs.add("Update Student Data")
 tabs.add("Delete Student Data")
+
+# tabs.bind('<Button-1>', removeFocustabs)
 
 tabs.grid(row=0, column=1, columnspan=4, rowspan=7, sticky="news", padx=10, pady=10)
 
@@ -139,9 +160,7 @@ EntryAddress = c.CTkTextbox(tabs.tab("Insert Student Data"), width=30)
 EntryAddress.grid(row=7, column=2, padx=5, pady=5, columnspan=2, sticky="news")
 
 EnterButton = c.CTkButton(tabs.tab("Insert Student Data"), text="Enter")
-EnterButton.grid(row=8, column=2, padx=5, pady=20, columnspan=2, sticky="news")
-
-
+EnterButton.grid(row=8, column=2, padx=5, pady=30, columnspan=2, sticky="news")
 
 # update student tab
 
@@ -158,16 +177,22 @@ UpdateOption.grid(row=0, column=1, columnspan=4, sticky="w", padx=5, pady=5)
 updateRoll = c.CTkLabel(tabs.tab("Update Student Data"), text="Roll Number ")
 updateRoll.grid(row=1, column=0, sticky="w", padx=5, pady=5)
 
-updateEntryRoll = c.CTkEntry(tabs.tab("Update Student Data"), placeholder_text="Roll Number of Whose Data is to be Deleted")
+updateEntryRoll = c.CTkEntry(tabs.tab("Update Student Data"), placeholder_text="of whose data is to be Updated")
 updateEntryRoll.grid(row=1, column=1, sticky="we", columnspan=2, padx=5, pady=5)
 
 dynamicLabel = c.CTkLabel(tabs.tab("Update Student Data"), text="Name")
 dynamicLabel.grid(row=2, column=0, sticky="w", padx=5, pady=5)
 
-DynamicWidget = c.CTkEntry(tabs.tab("Update Student Data"), placeholder_text="Enter Name")
+DynamicWidget = c.CTkEntry(tabs.tab("Update Student Data"), placeholder_text="Updated Name")
 DynamicWidget.grid(row=2, column=1, sticky="w", padx=5, pady=5)
 
-EnterButton = c.CTkButton(tabs.tab("Insert Student Data"), text="Enter")
-EnterButton.grid(row=8, column=2, padx=5, pady=20, columnspan=2, sticky="news")
+EnterButton = c.CTkButton(tabs.tab("Update Student Data"), text="Enter")
+EnterButton.grid(row=3, column=1, padx=5, pady=30, columnspan=2, sticky="news")
+
+# root.bind('<Button-1>', remove_focus)
+# def remove_focus(event):
+#     # Remove focus from the widget that currently has focus
+#     root.focus()
+
 
 window.mainloop()
