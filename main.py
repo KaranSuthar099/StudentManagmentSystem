@@ -194,8 +194,12 @@ def SelectTableMainFrame(choice):
         entry_class = c.CTkEntry(Tabs.tab("Insert Student Result Data"), placeholder_text="Enter Class")
         entry_class.grid(row=2, column=1, padx=5, pady=5)
 
-        enter_button = c.CTkButton(Tabs.tab("Insert Student Result Data"), text="Enter")
-        enter_button.grid(row=8, column=2, padx=5, pady=30, columnspan=2, sticky="news")
+        add_subject = c.CTkLabel(Tabs.tab("Insert Student Result Data"), text="Add Subject")
+        add_subject.grid(row=3, column=0, padx=5, pady=30)
+        entry_add_subject = c.CTkEntry(Tabs.tab("Insert Student Result Data"), placeholder_text="Subject Name")
+        entry_add_subject.grid(row=3, column=1, padx=5, pady=30)
+        enter_add_subject = c.CTkButton(Tabs.tab("Insert Student Result Data"), text="+", width=40, corner_radius=50)
+        enter_add_subject.grid(row=3, column=2, padx=5, pady=30, sticky="w")
 
 
 # main window
