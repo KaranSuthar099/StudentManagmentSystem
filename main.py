@@ -7,7 +7,7 @@ c.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "d
 
 flagFirstRun = 0
 value_check = 0
-
+var_row=0
 
 def remove_focus_sidebar(_):
     # Remove focus from the widget that currently has focus
@@ -18,6 +18,27 @@ def remove_focus_search_frame(_):
 
 def remove_focus_tabs(_):
     Tabs.focus_set()
+
+current_row = 4
+
+def create_subject():
+    global current_row
+
+    subject_name = entry_add_subject.get()
+
+    if subject_name:
+        label = c.CTkLabel(Tabs.tab("Insert Student Result Data"), text=subject_name)
+        label.grid(row=current_row, column=0, padx=5, pady=5 )
+
+        entry = c.CTkEntry(Tabs.tab("Insert Student Result Data"), placeholder_text="marks in " + subject_name)
+        entry.grid(row=current_row, column=1, padx=5, pady=5)
+
+        current_row += 1
+
+        entry_add_subject.delete(0, 'end')
+    else:
+        pass
+
 
 def create_delete_window_widgets(tab):
     delete_roll_label = c.CTkLabel(Tabs.tab(tab), text="Roll Number ", width=150)
@@ -194,13 +215,23 @@ def SelectTableMainFrame(choice):
         entry_class = c.CTkEntry(Tabs.tab("Insert Student Result Data"), placeholder_text="Enter Class")
         entry_class.grid(row=2, column=1, padx=5, pady=5)
 
+        global add_subject
+        global entry_add_subject
+        global enter_add_subject
+
         add_subject = c.CTkLabel(Tabs.tab("Insert Student Result Data"), text="Add Subject")
         add_subject.grid(row=3, column=0, padx=5, pady=30)
+
         entry_add_subject = c.CTkEntry(Tabs.tab("Insert Student Result Data"), placeholder_text="Subject Name")
         entry_add_subject.grid(row=3, column=1, padx=5, pady=30)
-        enter_add_subject = c.CTkButton(Tabs.tab("Insert Student Result Data"), text="+", width=40, corner_radius=50)
-        enter_add_subject.grid(row=3, column=2, padx=5, pady=30, sticky="w")
 
+        subject_name = entry_add_subject.get()
+
+        enter_add_subject = c.CTkButton(Tabs.tab("Insert Student Result Data"),
+                                        text="+", width=40,corner_radius=50,
+                                        command=create_subject
+                                        )
+        enter_add_subject.grid(row=3, column=2, padx=5, pady=30, sticky="w")
 
 # main window
 
@@ -219,27 +250,23 @@ window.rowconfigure(0, weight=1, uniform="uniform rows")
 window.rowconfigure(1, weight=1, uniform="uniform rows")
 window.rowconfigure(2, weight=1, uniform="uniform rows")
 window.rowconfigure(3, weight=1, uniform="uniform rows")
-window.rowconfigure(4, weight=1, uniform="uniform rows")
-window.rowconfigure(5, weight=1, uniform="uniform rows")
-window.rowconfigure(6, weight=1, uniform="uniform rows")
 
 # Side Frame
 
 sidebar = c.CTkFrame(window, corner_radius=20, width=120)
-
 sidebar.grid(column=0, row=0, rowspan=7, sticky="news", padx=10, pady=10)
-sideFrameSelectTable = c.CTkOptionMenu(sidebar, values=["Student Table", "Result Table"], command=SelectTableMainFrame)
 
+sideFrameSelectTable = c.CTkOptionMenu(sidebar, values=["Student Table", "Result Table"], command=SelectTableMainFrame)
 sideFrameSelectTable.grid(row=1, column=0, sticky="wen", padx=10, pady=10)
 
 sidebar.bind('<Button-1>', remove_focus_sidebar)
+
 Title = c.CTkLabel(sidebar, text="SMS", height=10, width=20, font=c.CTkFont(size=30, weight="bold"))
+Title.grid(row=0, column=0, sticky="ew", padx=40, pady=40)
 
 # Side Frame
 
 # Search Frame
-
-Title.grid(row=0, column=0, sticky="ew", padx=40, pady=40)
 
 SearchFrame = c.CTkFrame(window, corner_radius=20)
 SearchFrame.bind('<Button-1>', remove_focus_search_frame)
@@ -247,9 +274,6 @@ SearchFrame.rowconfigure(0, weight=1, uniform="uniform")
 SearchFrame.rowconfigure(1, weight=1, uniform="uniform")
 SearchFrame.rowconfigure(2, weight=1, uniform="uniform")
 SearchFrame.rowconfigure(3, weight=1, uniform="uniform")
-SearchFrame.rowconfigure(4, weight=1, uniform="uniform")
-SearchFrame.rowconfigure(5, weight=1, uniform="uniform")
-SearchFrame.rowconfigure(6, weight=1, uniform="uniform")
 
 SearchFrame.grid(row=0, column=5, rowspan=7, columnspan=3, sticky="news", padx=10, pady=10)
 SearchBar = c.CTkEntry(SearchFrame, placeholder_text="S e a r c h", width=200)
@@ -268,7 +292,7 @@ Tabs.add("Insert Student Data")
 Tabs.add("Update Student Data")
 Tabs.add("Delete Student Data")
 
-Tabs.grid(row=0, column=1, columnspan=4, rowspan=7, sticky="news", padx=10, pady=10)
+Tabs.grid(row=0, column=1, columnspan=4, rowspan=4, sticky="news", padx=10, pady=10)
 
 create_insert_window_widgets("Insert Student Data")
 create_update_window_widgets("Update Student Data")
