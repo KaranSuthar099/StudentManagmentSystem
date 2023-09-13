@@ -1,5 +1,5 @@
 import tkinter as tk
-
+import mysql.connector as sql
 import customtkinter as c
 
 c.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
@@ -232,6 +232,17 @@ def SelectTableMainFrame(choice):
                                         command=create_subject
                                         )
         enter_add_subject.grid(row=3, column=2, padx=5, pady=30, sticky="w")
+
+
+# SQL implementations
+
+mydb = sql.connect(host="localhost", user="root", passwd="root")  # Establishing SQL connection
+
+cursor = mydb.cursor()  # Creating Cursor object
+
+cursor.execute("")
+
+# SQL implementations
 
 # main window
 
