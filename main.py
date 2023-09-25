@@ -178,20 +178,21 @@ def create_insert_window_widgets(tab):
 
 
 def SelectUpdateValue(choice):
-    global dynamic_update_label
+    # global dynamic_update_label
     global dynamic_update_widget
 
     dynamic_update_label.configure(text=choice)
     dynamic_update_widget.destroy()
 
-    if choice in ["Name", "Class", "Date Of Birth", "Gender", "Phone Number", "Guardian's Name"]:
+    if choice == "Address":
+        dynamic_update_widget = c.CTkTextbox(Tabs.tab("Update Student Data"), width=30)
+        dynamic_update_widget.grid(row=2, column=1, sticky="news", padx=5, pady=5, columnspan=2)
+
+    else:
         dynamic_update_widget = c.CTkEntry(Tabs.tab("Update Student Data"),
                                            placeholder_text="Enter " + choice,
                                            width=150)
         dynamic_update_widget.grid(row=2, column=1, sticky="w", padx=5, pady=5)
-    elif choice == "Address":
-        dynamic_update_widget = c.CTkTextbox(Tabs.tab("Update Student Data"), width=30)
-        dynamic_update_widget.grid(row=2, column=1, sticky="news", padx=5, pady=5, columnspan=2)
 
 # result table code in HERE
 def SelectTableMainFrame(choice):
