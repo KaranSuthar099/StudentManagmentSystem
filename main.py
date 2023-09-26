@@ -22,7 +22,7 @@ def remove_focus_search_frame(_):
 def remove_focus_tabs(_):
     Tabs.focus_set()
 
-def insert_data_student_record(roll, name, class_number, date, gender, phone_number, guardian_name, address):
+def insert_student_record(roll, name, class_number, date, gender, phone_number, guardian_name, address):
 
     if gender == 0:
         gender = "Male"
@@ -39,8 +39,8 @@ def insert_data_student_record(roll, name, class_number, date, gender, phone_num
     except Exception as e:
         print("ERROR!!! ", e)
 
-def update_data_student_record(roll, feild, updated_value):
-    query = "update student_records set {} = {} where Roll_Number={}".format(feild, updated_value, roll)
+def update_student_record(roll, field, updated_value):
+    query = "update student_records set {} = {} where Roll_Number={}".format(field, updated_value, roll)
     try:
         cursor.execute(query)
         mydb.commit()
@@ -48,7 +48,7 @@ def update_data_student_record(roll, feild, updated_value):
     except Exception as e:
         print("ERROR!!! ", e)
 
-def delete_data_student_record(roll):
+def delete_student_record(roll):
     query = "delete from student_records where roll_number = {}".format(roll)
     try:
         cursor.execute(query)
@@ -76,20 +76,20 @@ def create_subject():
         pass
 
 
-def create_delete_window_widgets(tab):
+def create_delete_window(tab):
     delete_roll_label = c.CTkLabel(Tabs.tab(tab), text="Roll Number ", width=150)
     delete_roll_label.grid(row=0, column=0, sticky="news", padx=5, pady=5)
 
     delete_entry_roll = c.CTkEntry(Tabs.tab(tab), width=300, placeholder_text="of whose data is to be Deleted")
     delete_entry_roll.grid(row=0, column=1, columnspan=2, sticky="news", padx=5, pady=5)
 
-    enter_button_delete = c.CTkButton(Tabs.tab(tab), text="Enter", command= lambda: delete_data_student_record(
+    enter_button_delete = c.CTkButton(Tabs.tab(tab), text="Enter", command= lambda: delete_student_record(
         delete_entry_roll.get()
     ))
     enter_button_delete.grid(row=1, column=1, columnspan=2, padx=10, pady=30, sticky="news")
 
 
-def create_update_window_widgets(tab):
+def create_update_window(tab):
     # update student tab
 
     update_label = c.CTkLabel(Tabs.tab(tab), text="You want to Update ")
@@ -121,7 +121,7 @@ def create_update_window_widgets(tab):
     dynamic_update_entry = c.CTkEntry(Tabs.tab(tab), placeholder_text="Updated Name")
     dynamic_update_entry.grid(row=2, column=1, sticky="w", padx=5, pady=5)
 
-    enter_button = c.CTkButton(Tabs.tab(tab), text="Enter", command=lambda: update_data_student_record(
+    enter_button = c.CTkButton(Tabs.tab(tab), text="Enter", command=lambda: update_student_record(
         update_entry_roll.get(), update_options.get(), dynamic_update_entry.get()
     ))
     enter_button.grid(row=3, column=1, padx=5, pady=30, columnspan=2, sticky="news")
@@ -129,7 +129,10 @@ def create_update_window_widgets(tab):
     # update student tab
 
 
-def create_insert_window_widgets(tab):
+def create_insert_window(tab):
+
+    # Label Widgets -------
+
     roll_no_label = c.CTkLabel(Tabs.tab(tab), text="Roll NUmber")  # primary key
     roll_no_label.grid(row=0, column=0)
 
@@ -154,6 +157,12 @@ def create_insert_window_widgets(tab):
     address_label = c.CTkLabel(Tabs.tab(tab), text="Address")
     address_label.grid(row=6, column=0)
 
+
+    subjects_label = c.CTkLabel(Tabs.tab(tab), text="Opted Subjects")
+    subjects_label.grid(row=6, column=1)
+
+     # Entry Widgets --------
+
     entry_roll_number = c.CTkEntry(Tabs.tab(tab), placeholder_text="roll number")
     entry_roll_number.grid(row=1, column=0, padx=5, pady=5)
 
@@ -166,11 +175,13 @@ def create_insert_window_widgets(tab):
     entry_date = c.CTkEntry(Tabs.tab(tab), placeholder_text="YYYY-MM-DD")
     entry_date.grid(row=3, column=0, padx=5, pady=5)
 
+
     gender_value = tk.IntVar(value=0)
     entry_male_gender = c.CTkRadioButton(Tabs.tab(tab), text="Male", variable=gender_value, value=0)
     entry_male_gender.grid(row=3, column=1, padx=5, pady=5)
     entry_female_gender = c.CTkRadioButton(Tabs.tab(tab), text="Female", variable=gender_value, value=1)
     entry_female_gender.grid(row=3, column=2, padx=5, pady=5)
+
 
     entry_phone_number = c.CTkEntry(Tabs.tab(tab), placeholder_text="Enter Phone number")
     entry_phone_number.grid(row=5, column=0, padx=5, pady=5, sticky="ew")
@@ -178,18 +189,35 @@ def create_insert_window_widgets(tab):
     entry_guardian_name = c.CTkEntry(Tabs.tab(tab), placeholder_text="Enter Guardian's Name")
     entry_guardian_name.grid(row=5, column=1, padx=5, pady=5, columnspan=2, sticky="ew")
 
-    entry_address = c.CTkTextbox(Tabs.tab(tab), width=30)
-    entry_address.grid(row=7, column=0, padx=5, pady=5, columnspan=2, sticky="news")
+    entry_address = c.CTkEntry(Tabs.tab(tab), placeholder_text="address")
+    entry_address.grid(row=7, column=0, padx=5, pady=5, sticky="news")
+
+# subjects_label.grid(row=6, column=2)
+    entry_subject_1 =  c.CTkEntry(Tabs.tab(tab), placeholder_text="subject")
+    entry_subject_1.grid(row=7, column=1, padx=5, pady=5, sticky="news")
+
+    entry_subject_2 = c.CTkEntry(Tabs.tab(tab), placeholder_text="subject")
+    entry_subject_2.grid(row=7, column=2, padx=5, pady=5, sticky="news")
+
+    entry_subject_3 = c.CTkEntry(Tabs.tab(tab), placeholder_text="subject")
+    entry_subject_3.grid(row=8, column=1, padx=5, pady=5, sticky="news")
+
+    entry_subject_4 = c.CTkEntry(Tabs.tab(tab), placeholder_text="subject")
+    entry_subject_4.grid(row=8, column=2, padx=5, pady=5, sticky="news")
+
+    entry_subject_5 = c.CTkEntry(Tabs.tab(tab), placeholder_text="subject")
+    entry_subject_5.grid(row=9, column=1, padx=5, pady=5, sticky="news")
+
 
     enter_button = c.CTkButton(Tabs.tab(tab), text="Enter",
-                               command=lambda: insert_data_student_record(
+                               command=lambda: insert_student_record(
                                    entry_roll_number.get(), entry_name.get(),
                                    entry_class.get(),entry_date.get(),
                                    gender_value.get(), entry_phone_number.get(),
-                                   entry_guardian_name.get(), entry_address.get(1.0, c.END)
+                                   entry_guardian_name.get(), entry_address.get(1.0, c.END), 
                                )
                                )
-    enter_button.grid(row=8, column=0, padx=5, pady=30, columnspan=2, sticky="news")
+    enter_button.grid(row=10, column=0, padx=50, pady=20, columnspan=3, sticky="news")
 
 
 def select_update_value(choice):
@@ -223,9 +251,9 @@ def SelectTableMainFrame(choice):
 
         Tabs.grid(row=0, column=1, columnspan=4, rowspan=7, sticky="news", padx=10, pady=10)
 
-        create_insert_window_widgets("Insert Student Data")
-        create_update_window_widgets("Update Student Data")
-        create_delete_window_widgets("Delete Student Data")
+        create_insert_window("Insert Student Data")
+        create_update_window("Update Student Data")
+        create_delete_window("Delete Student Data")
 
     elif choice == "Result Table":
 
@@ -365,8 +393,8 @@ Tabs.add("Delete Student Data")
 
 Tabs.grid(row=0, column=1, columnspan=4, rowspan=4, sticky="news", padx=10, pady=10)
 
-create_insert_window_widgets("Insert Student Data")
-create_update_window_widgets("Update Student Data")
-create_delete_window_widgets("Delete Student Data")
+create_insert_window("Insert Student Data")
+create_update_window("Update Student Data")
+create_delete_window("Delete Student Data")
 
 window.mainloop()

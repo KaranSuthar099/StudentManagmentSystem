@@ -1,13 +1,17 @@
-import customtkinter
-from tkinter import ttk
-from ttkthemes import ThemedStyle
+import tkinter as tk
 
+def move_rectangle():
+    canvas.move(rectangle, 1, 0)
+    root.after(10, move_rectangle)  # Schedule the next move after 10 milliseconds
 
-main = customtkinter.CTk()
+root = tk.Tk()
 
+canvas = tk.Canvas(root, width=200, height=200)
+canvas.pack()
 
-seg_button_1 = customtkinter.CTkSegmentedButton(main, values=["CTkSegmentedButton", "Value 2", "Value 3"])
-seg_button_1.grid(row=0, column=0, padx=(20, 10), pady=(10, 10), sticky="ew")
-seg_button_1.set("Value 2")
+rectangle = canvas.create_rectangle(50, 50, 100, 100, fill="blue")
 
-main.mainloop()
+move_rectangle()
+
+root.mainloop()
+
