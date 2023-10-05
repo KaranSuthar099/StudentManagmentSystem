@@ -1,17 +1,47 @@
-import tkinter as tk
+import customtkinter as c
 
-def move_rectangle():
-    canvas.move(rectangle, 1, 0)
-    root.after(10, move_rectangle)  # Schedule the next move after 10 milliseconds
+def switch_to_frame1():
+    global frame_right
+    frame_right.destroy()
 
-root = tk.Tk()
+    frame_right = c.CTkFrame(window)
+    frame_right.grid(row=0, column=1, sticky="news", padx=10, pady=10)
 
-canvas = tk.Canvas(root, width=200, height=200)
-canvas.pack()
+    label = c.CTkLabel(frame_right, text="frame asfg 111111")
+    label.pack()
 
-rectangle = canvas.create_rectangle(50, 50, 100, 100, fill="blue")
+def switch_to_frame2():
+    global frame_right
+    frame_right.destroy()
 
-move_rectangle()
+    frame_right = c.CTkFrame(window)
+    frame_right.grid(row=0, column=1, sticky="news", padx=10, pady=10)
 
-root.mainloop()
+    label = c.CTkLabel(frame_right, text="frame 22222")
+    label.pack()
 
+
+window = c.CTk()
+window.geometry("720x480")
+window.rowconfigure(0, weight=1)
+window.columnconfigure(0, weight=3)
+window.columnconfigure(1, weight=7)
+
+frame_left = c.CTkFrame(window)
+frame_left.grid(row=0, column=0, sticky="news", padx=10, pady=10)
+
+button = c.CTkButton(frame_left, text="frame one 11", fg_color="#505050", command=switch_to_frame1)
+button.grid(row=0, column=0, padx=10, pady=10, sticky="news")
+
+button2 = c.CTkButton(frame_left, text="frame two 22", fg_color="#505050", command=switch_to_frame2)
+button2.grid(row=1, column=0, padx=10, pady=10)
+
+# djskfvhgsldfkjghsdf
+
+frame_right = c.CTkFrame(window)
+frame_right.grid(row=0, column=1, sticky="news", padx=10, pady=10)
+
+label = c.CTkLabel(frame_right, text="frame asfg 111111")
+label.pack()
+
+window.mainloop()
