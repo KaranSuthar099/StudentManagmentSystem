@@ -3,14 +3,6 @@ import tkinter as tk
 import customtkinter as c
 import mysql.connector as sql
 
-c.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
-c.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"
-
-flagFirstRun = 0
-value_check = 0
-var_row = 0
-current_row = 4
-
 
 def remove_focus_sidebar(_):
     # Remove focus from the widget that currently has focus
@@ -67,6 +59,19 @@ def delete_student_record(roll):
         print("data delete success")
     except Exception as e:
         print("ERROR!!! ", e)
+
+
+def create_search_window(tab):
+    tab.destroy()
+
+    tab = c.CTkFrame(window)
+    tab.grid(row=0, column=2, columnspan=4, rowspan=4, sticky="news", padx=10, pady=10)
+
+    search_bar = c.CTkEntry(tab, width=650, placeholder_text=" S E A R C H ")
+    search_bar.grid(row=0, column=0, columnspan=3, sticky="news", padx=10, pady=10)
+
+    refresh = c.CTkButton(tab, text="@")
+    refresh.grid(row=0, column=3)
 
 
 def create_delete_window(tab):
@@ -288,6 +293,9 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS Subjects (roll_number int , subject
 
 # main window
 
+c.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
+c.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"
+
 window = c.CTk()
 window.geometry("1280x720")
 window.title("School Management System")
@@ -316,7 +324,7 @@ Title.grid(row=0, column=0, sticky="ew", padx=40, pady=40)
 select_table = c.CTkOptionMenu(sidebar, values=["Student Table", "Result Table"])
 select_table.grid(row=1, column=0, sticky="news", padx=10, pady=10)
 
-search_button = c.CTkButton(sidebar, text="SEARCH DATA")
+search_button = c.CTkButton(sidebar, text="SEARCH DATA", command=lambda: create_search_window(mainframe))
 search_button.grid(row=2, column=0, columnspan=2, sticky="news", padx=10, pady=10)
 
 insert_button = c.CTkButton(sidebar, text="INSERT DATA"
@@ -332,6 +340,26 @@ delete_button.grid(row=5, column=0, sticky="wens", padx=10, pady=10)
 mainframe = c.CTkFrame(window)
 mainframe.grid(row=0, column=2, columnspan=4, rowspan=4, sticky="news", padx=10, pady=10)
 
-create_insert_window(mainframe, select_table.get())
+mainframe.columnconfigure(0, weight=1, uniform="uniform columns")
+mainframe.columnconfigure(1, weight=1, uniform="uniform columns")
+mainframe.columnconfigure(2, weight=1, uniform="uniform columns")
+mainframe.columnconfigure(3, weight=1, uniform="uniform columns")
+
+mainframe.rowconfigure(0, weight=1, uniform="uniform rows")
+mainframe.rowconfigure(1, weight=1, uniform="uniform rows")
+mainframe.rowconfigure(2, weight=1, uniform="uniform rows")
+mainframe.rowconfigure(3, weight=1, uniform="uniform rows")
+mainframe.rowconfigure(4, weight=1, uniform="uniform rows")
+mainframe.rowconfigure(5, weight=1, uniform="uniform rows")
+mainframe.rowconfigure(6, weight=1, uniform="uniform rows")
+mainframe.rowconfigure(7, weight=1, uniform="uniform rows")
+mainframe.rowconfigure(8, weight=1, uniform="uniform rows")
+mainframe.rowconfigure(9, weight=1, uniform="uniform rows")
+mainframe.rowconfigure(10, weight=1, uniform="uniform rows")
+mainframe.rowconfigure(11, weight=1, uniform="uniform rows")
+mainframe.rowconfigure(12, weight=1, uniform="uniform rows")
+
+
+create_search_window(mainframe)
 
 window.mainloop()
