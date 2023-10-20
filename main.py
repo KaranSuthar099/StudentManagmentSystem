@@ -65,12 +65,12 @@ def create_search_window(tab):
     tab.destroy()
 
     tab = c.CTkFrame(window)
-    tab.grid(row=0, column=2, columnspan=4, rowspan=4, sticky="news", padx=10, pady=10)
+    tab.grid(row=0, column=1, columnspan=5, rowspan=4, sticky="news", padx=10, pady=10)
 
     search_bar = c.CTkEntry(tab, width=650, placeholder_text=" S E A R C H ")
     search_bar.grid(row=0, column=0, columnspan=3, sticky="news", padx=10, pady=10)
 
-    refresh = c.CTkButton(tab, text="@")
+    refresh = c.CTkButton(tab, text="@", )
     refresh.grid(row=0, column=3)
 
 
@@ -78,7 +78,7 @@ def create_delete_window(tab):
     tab.destroy()
 
     tab = c.CTkFrame(window)
-    tab.grid(row=0, column=2, columnspan=4, rowspan=4, sticky="news", padx=10, pady=10)
+    tab.grid(row=0, column=1, columnspan=5, rowspan=4, sticky="news", padx=10, pady=10)
 
     delete_roll_label = c.CTkLabel(tab, text="Roll Number ")
     delete_roll_label.grid(row=0, column=0, sticky="news", padx=5, pady=5)
@@ -96,7 +96,7 @@ def create_update_window(tabs):
     tabs.destroy()
 
     tabs = c.CTkFrame(window)
-    tabs.grid(row=0, column=2, columnspan=4, rowspan=4, sticky="news", padx=10, pady=10)
+    tabs.grid(row=0, column=1, columnspan=5, rowspan=4, sticky="news", padx=10, pady=10)
     # update student tab
 
     update_label = c.CTkLabel(tabs, text="You want to Update ")
@@ -139,7 +139,7 @@ def create_insert_window(tab, table):
     tab.destroy()
 
     tab = c.CTkFrame(window)
-    tab.grid(row=0, column=2, columnspan=4, rowspan=4, sticky="news", padx=10, pady=10)
+    tab.grid(row=0, column=1, columnspan=5, rowspan=4, sticky="news", padx=10, pady=10)
     # Label Widgets -------
     if table == "Student Table":
         roll_no_label = c.CTkLabel(tab, text="Roll Number")  # primary key
@@ -315,7 +315,7 @@ window.rowconfigure(3, weight=1, uniform="uniform rows")
 # Side Frame
 
 sidebar = c.CTkFrame(window)
-sidebar.grid(column=0, row=0, rowspan=7, columnspan=2, sticky="news", padx=10, pady=10)
+sidebar.grid(column=0, row=0, rowspan=7, sticky="news", padx=10, pady=10)
 sidebar.bind('<Button-1>', remove_focus_sidebar)
 
 Title = c.CTkLabel(sidebar, text="SMS", height=10, width=20, font=c.CTkFont(size=30, weight="bold"))
@@ -338,27 +338,7 @@ delete_button = c.CTkButton(sidebar, text="DELETE DATA", command=lambda: create_
 delete_button.grid(row=5, column=0, sticky="wens", padx=10, pady=10)
 
 mainframe = c.CTkFrame(window)
-mainframe.grid(row=0, column=2, columnspan=4, rowspan=4, sticky="news", padx=10, pady=10)
-
-mainframe.columnconfigure(0, weight=1, uniform="uniform columns")
-mainframe.columnconfigure(1, weight=1, uniform="uniform columns")
-mainframe.columnconfigure(2, weight=1, uniform="uniform columns")
-mainframe.columnconfigure(3, weight=1, uniform="uniform columns")
-
-mainframe.rowconfigure(0, weight=1, uniform="uniform rows")
-mainframe.rowconfigure(1, weight=1, uniform="uniform rows")
-mainframe.rowconfigure(2, weight=1, uniform="uniform rows")
-mainframe.rowconfigure(3, weight=1, uniform="uniform rows")
-mainframe.rowconfigure(4, weight=1, uniform="uniform rows")
-mainframe.rowconfigure(5, weight=1, uniform="uniform rows")
-mainframe.rowconfigure(6, weight=1, uniform="uniform rows")
-mainframe.rowconfigure(7, weight=1, uniform="uniform rows")
-mainframe.rowconfigure(8, weight=1, uniform="uniform rows")
-mainframe.rowconfigure(9, weight=1, uniform="uniform rows")
-mainframe.rowconfigure(10, weight=1, uniform="uniform rows")
-mainframe.rowconfigure(11, weight=1, uniform="uniform rows")
-mainframe.rowconfigure(12, weight=1, uniform="uniform rows")
-
+mainframe.grid(row=0, column=1, columnspan=4, rowspan=4, sticky="news", padx=10, pady=10)
 
 create_search_window(mainframe)
 
