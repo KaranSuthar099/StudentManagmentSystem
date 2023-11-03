@@ -1,47 +1,54 @@
-import tkinter as tk
-from tkinter import ttk
-from tkinter.messagebox import showinfo
-
-root = tk.Tk()
-root.title('Treeview demo')
-root.geometry('620x200')
-
-# define columns
-columns = ('first_name', 'last_name', 'email')
-
-tree = ttk.Treeview(root, columns=columns, show='headings')
-
-# define headings
-tree.heading('first_name', text='First Name')
-tree.heading('last_name', text='Last Name')
-tree.heading('email', text='Email')
-
-# generate sample data
-contacts = []
-for n in range(1, 100):
-    contacts.append((f'first {n}', f'last {n}', f'email{n}@example.com'))
-
-# add data to the treeview
-for contact in contacts:
-    tree.insert('', tk.END, values=contact)
+from CTkMessagebox import CTkMessagebox
+import customtkinter
 
 
-def item_selected(event):
-    for selected_item in tree.selection():
-        item = tree.item(selected_item)
-        record = item['values']
-        # show a message
-        showinfo(title='Information', message=','.join(record))
+def show_info():
+    # Default messagebox for showing some information
+    CTkMessagebox(title="Info", message="This is a CTkMessagebox!")
 
 
-tree.bind('<<TreeviewSelect>>', item_selected)
+def show_checkmark():
+    # Show some positive message with the checkmark icon
+    CTkMessagebox(message="CTkMessagebox is successfully installed.",
+                  icon="check", option_1="Thanks")
 
-tree.grid(row=0, column=0, sticky='nsew')
 
-# add a scrollbar
-scrollbar = ttk.Scrollbar(root, orient=tk.VERTICAL, command=tree.yview)
-tree.configure(yscroll=scrollbar.set)
-scrollbar.grid(row=0, column=1, sticky='ns')
+def show_error():
+    # Show some error message
+    CTkMessagebox(title="Error", message="Something went wrong!!!", icon="cancel")
 
-# run the app
-root.mainloop()
+
+def show_warning():
+    # Show some retry/cancel warnings
+    msg = CTkMessagebox(title="Warning Message!", message="Unable to connect!",
+                        icon="warning", option_1="Cancel", option_2="Retry")
+
+    if msg.get() == "Retry":
+        show_warning()
+
+
+def ask_question():
+    # get yes/no answers
+    msg = CTkMessagebox(title="Exit?", message="Do you want to close the program?",
+                        icon="question", option_1="Cancel", option_2="No", option_3="Yes")
+    response = msg.get()
+
+    if response == "Yes":
+        app.destroy()
+    else:
+        print("Click 'Yes' to exit!")
+
+
+app = customtkinter.CTk()
+app.rowconfigure((0, 1, 2, 3, 4, 5), weight=1)
+app.columnconfigure(0, weight=1)
+app.minsize(200, 250)
+
+customtkinter.CTkLabel(app, text="CTk Messagebox Examples").grid(padx=20)
+customtkinter.CTkButton(app, text="Check CTkMessagebox", command=show_checkmark).grid(padx=20, pady=10, sticky="news")
+customtkinter.CTkButton(app, text="Show Info", command=show_info).grid(padx=20, pady=10, sticky="news")
+customtkinter.CTkButton(app, text="Show Error", command=show_error).grid(padx=20, pady=10, sticky="news")
+customtkinter.CTkButton(app, text="Show Warning", command=show_warning).grid(padx=20, pady=10, sticky="news")
+customtkinter.CTkButton(app, text="Ask Question", command=ask_question).grid(padx=20, pady=(10, 20), sticky="news")
+
+app.mainloop()
