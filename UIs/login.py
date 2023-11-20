@@ -3,6 +3,8 @@ import customtkinter as c
 from CTkMessagebox import CTkMessagebox
 from Splash_Screen import show_splash_screen
 from center_window import center_window
+from backend import get_all_data
+from student_window import create_student_window
 
 c.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
 c.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"
@@ -30,13 +32,23 @@ def change_widgets():
 
 
 def authenticate():
-    if user_var.get() == 0:
-        pass
-    elif user_var.get() == 1:
-        if admin_id_entry.get() == "admin" and password_entry.get() == "root":
+    if user_var.get() == 0: # login as a student
+        data = get_all_data()
+        roll_no = roll_no_entry.get()
+
+        for i in data:
+            if i[0] == roll_no:
+                create_student_window(roll_no)
+            elif data == []:
+                CTkMessagebox(title="Error",
+                              message="Oops! No data found with the following details. Please check and try again",
+                              icon="cancel", option_1="Retry")
+
+    elif user_var.get() == 1: # login as admin
+        if admin_id_entry.get() == "admin" and password_entry.get() == "root": # if the id and pass are correct
             CTkMessagebox(title="Login Success!!", message="You have been successfully logged-In",
                           icon="check", option_1="OK")
-        else:
+        else: # if the password and id is false
             CTkMessagebox(title="Login Error",
                           message="Oops! Incorrect login details. Please check and try again",
                           icon="cancel", option_1="Retry")

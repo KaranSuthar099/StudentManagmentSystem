@@ -57,6 +57,12 @@ def fill_treeview(tree):
     for i, row in enumerate(data):
         tree.insert('', i, values=row)
 
+def get_all_data():
+    cursor.execute('SELECT * FROM STUDENT_RECORDS')
+    data = cursor.fetchall()
+    return data
+
+
 mydb = sql.connect(host="localhost", user="root", passwd="root")  # Establishing SQL connection
 
 cursor = mydb.cursor()  # Creating Cursor object
