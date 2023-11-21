@@ -279,85 +279,68 @@ c.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "d
 # create_search_window(mainframe)
 
 window = c.CTk()
-window.geometry("1024x575")
+window.geometry("1133x575")
 window.title("School Management System")
 
-window.rowconfigure([0, 1, 2, 3, 4, 5, 6], weight=1, uniform="uniformity")
-window.columnconfigure([0, 1, 2, 3, 4, 5, 6], weight=1, uniform="uniformity")
+# window.rowconfigure([0, 1, 2, 3, 4, 5, 6], weight=1, uniform="uniformity")
+# window.columnconfigure([0, 1, 2, 3, 4, 5, 6], weight=1, uniform="uniformity")
 
-fields_frame = c.CTkFrame(window)
+window.rowconfigure(0, weight=1, uniform="uniformity")
+window.columnconfigure(0, weight=1, uniform="uniformity")
+window.columnconfigure(1, weight=1, uniform="uniformity")
+window.columnconfigure(2, weight=6, uniform="uniformity")
+
+fields_frame = c.CTkFrame(window, width=200)
 fields_frame.grid(row=0, column=0, rowspan=7, columnspan=2, sticky="news", padx=10, pady=10)
+#
+# roll_no_label = c.CTkLabel(fields_frame, text="Roll Number")  # primary key
+# roll_no_label.grid(row=0, column=0, sticky="w", padx=10)
+# entry_roll_number = c.CTkEntry(fields_frame, placeholder_text="roll number")
+# entry_roll_number.grid(row=1, column=0, padx=5, pady=5)
+#
+# name_label = c.CTkLabel(fields_frame, text="Name")
+# name_label.grid(row=0, column=1, sticky="w", padx=10)
+# entry_name = c.CTkEntry(fields_frame, placeholder_text="First Name")
+# entry_name.grid(row=1, column=1, padx=5, pady=5)
+#
+# class_label = c.CTkLabel(fields_frame, text="Class")
+# class_label.grid(row=2, column=0, sticky="w", padx=10)
+# entry_class = c.CTkEntry(fields_frame, placeholder_text="Class")
+# entry_class.grid(row=3, column=0, padx=5, pady=5)
+#
+# date_of_birth_label = c.CTkLabel(fields_frame, text="Date Of Birth")
+# date_of_birth_label.grid(row=2, column=1, sticky="w", padx=10)
+# entry_date = c.CTkEntry(fields_frame, placeholder_text="YYYY-MM-DD")
+# entry_date.grid(row=3, column=1, padx=5, pady=5)
+#
+#
+# gender_label = c.CTkLabel(fields_frame, text="Gender")
+# gender_label.grid(row=4, column=0, sticky="w", padx=10)
+#
+# gender_value = tk.IntVar(value=0)
+# entry_male_gender = c.CTkRadioButton(fields_frame, text="Male", variable=gender_value, value=0)
+# entry_male_gender.grid(row=5, column=0, padx=5, pady=5)
+# entry_female_gender = c.CTkRadioButton(fields_frame, text="Female", variable=gender_value, value=1)
+# entry_female_gender.grid(row=5, column=1, padx=5, pady=5)
+#
+# phone_number_label = c.CTkLabel(fields_frame, text="Phone")
+# phone_number_label.grid(row=6, column=0, sticky="w", padx=10)
+# entry_phone_number = c.CTkEntry(fields_frame, placeholder_text="Enter Phone number")
+# entry_phone_number.grid(row=7, column=0, padx=5, pady=5)
+#
+# address_label = c.CTkLabel(fields_frame, text="Address")
+# address_label.grid(row=6, column=1, sticky="w", padx=10)
+# entry_address = c.CTkEntry(fields_frame, placeholder_text="address")
+# entry_address.grid(row=7, column=1, padx=5, pady=5,)
+#
+# guardian_name_label = c.CTkLabel(fields_frame, text="Guardian's Name")
+# guardian_name_label.grid(row=8, column=0, sticky="w", padx=10)
+# entry_guardian_name = c.CTkEntry(fields_frame, placeholder_text="Enter Guardian's Name")
+# entry_guardian_name.grid(row=9, column=0, padx=5, pady=5, columnspan=2, sticky="ew")
 
-roll_no_label = c.CTkLabel(fields_frame, text="Roll Number")  # primary key
-roll_no_label.grid(row=0, column=0)
+tableframe = c.CTkFrame(window)
+tableframe.grid(row=0, column=2, sticky="news", rowspan=7, columnspan=6, padx=10, pady=10)
 
-name_label = c.CTkLabel(fields_frame, text="Name")
-name_label.grid(row=0, column=1)
-
-class_label = c.CTkLabel(fields_frame, text="Class")
-class_label.grid(row=0, column=2)
-
-date_of_birth_label = c.CTkLabel(fields_frame, text="Date Of Birth")
-date_of_birth_label.grid(row=2, column=0)
-
-gender_label = c.CTkLabel(fields_frame, text="Gender")
-gender_label.grid(row=2, column=1)
-
-phone_number_label = c.CTkLabel(fields_frame, text="Phone")
-phone_number_label.grid(row=4, column=0)
-
-guardian_name_label = c.CTkLabel(fields_frame, text="Guardian's Name")
-guardian_name_label.grid(row=4, column=1)
-
-address_label = c.CTkLabel(fields_frame, text="Address")
-address_label.grid(row=6, column=0)
-
-subjects_label = c.CTkLabel(fields_frame, text="Opted Subjects")
-subjects_label.grid(row=6, column=1)
-
-# Entry Widgets --------
-
-entry_roll_number = c.CTkEntry(fields_frame, placeholder_text="roll number")
-entry_roll_number.grid(row=1, column=0, padx=5, pady=5)
-
-entry_name = c.CTkEntry(fields_frame, placeholder_text="First Name")
-entry_name.grid(row=1, column=1, padx=5, pady=5)
-
-entry_class = c.CTkEntry(fields_frame, placeholder_text="Class")
-entry_class.grid(row=1, column=2, padx=5, pady=5)
-
-entry_date = c.CTkEntry(fields_frame, placeholder_text="YYYY-MM-DD")
-entry_date.grid(row=3, column=0, padx=5, pady=5)
-
-gender_value = tk.IntVar(value=0)
-entry_male_gender = c.CTkRadioButton(fields_frame, text="Male", variable=gender_value, value=0)
-entry_male_gender.grid(row=3, column=1, padx=5, pady=5)
-entry_female_gender = c.CTkRadioButton(fields_frame, text="Female", variable=gender_value, value=1)
-entry_female_gender.grid(row=3, column=2, padx=5, pady=5)
-
-entry_phone_number = c.CTkEntry(fields_frame, placeholder_text="Enter Phone number")
-entry_phone_number.grid(row=5, column=0, padx=5, pady=5, sticky="ew")
-
-entry_guardian_name = c.CTkEntry(fields_frame, placeholder_text="Enter Guardian's Name")
-entry_guardian_name.grid(row=5, column=1, padx=5, pady=5, columnspan=2, sticky="ew")
-
-entry_address = c.CTkEntry(fields_frame, placeholder_text="address")
-entry_address.grid(row=7, column=0, padx=5, pady=5, sticky="news")
-
-entry_subject_1 = c.CTkEntry(fields_frame, placeholder_text="subject 1")
-entry_subject_1.grid(row=7, column=1, padx=5, pady=5, sticky="news")
-
-entry_subject_2 = c.CTkEntry(fields_frame, placeholder_text="subject 2")
-entry_subject_2.grid(row=7, column=2, padx=5, pady=5, sticky="news")
-
-entry_subject_3 = c.CTkEntry(fields_frame, placeholder_text="subject 3")
-entry_subject_3.grid(row=8, column=1, padx=5, pady=5, sticky="news")
-
-entry_subject_4 = c.CTkEntry(fields_frame, placeholder_text="subject 4")
-entry_subject_4.grid(row=8, column=2, padx=5, pady=5, sticky="news")
-
-entry_subject_5 = c.CTkEntry(fields_frame, placeholder_text="subject 5")
-entry_subject_5.grid(row=9, column=1, padx=5, pady=5, sticky="news")
 
 
 window.mainloop()
