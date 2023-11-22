@@ -1,18 +1,14 @@
 import tkinter as tk
 import customtkinter as c
 from center_window import center_window
-from tkinter import ttk
-def create_student_window():
 
 
-    def submit_form():
-        # You can handle form submission here
-        pass
+def create_student_window(rollno):
 
     root = c.CTk()
     root.title("Student Form")
 
-    frame = c.CTkFrame(root, padding="10")
+    frame = c.CTkFrame(root)
     frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
 
     # Create labels and entry fields
@@ -56,10 +52,9 @@ def create_student_window():
     address_entry = c.CTkEntry(frame)
     address_entry.grid(row=7, column=1, sticky=(tk.W, tk.E), padx=(0, 10), pady=(10, 0))
 
-    submit_button = c.CTkButton(frame, text="Submit", command=submit_form)
+    submit_button = c.CTkButton(frame, text="Submit")
     submit_button.grid(row=8, column=0, columnspan=2, pady=(10, 0))
 
     root.mainloop()
 
 
-create_student_window()
