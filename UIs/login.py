@@ -5,7 +5,7 @@ from Splash_Screen import show_splash_screen
 from center_window import center_window
 from backend import get_all_data
 from student_window import create_student_window
-from kill_window import kill_window
+
 
 c.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
 c.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"

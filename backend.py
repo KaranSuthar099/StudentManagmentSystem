@@ -1,5 +1,6 @@
 import mysql.connector as sql
-import CTkMessagebox
+from CTkMessagebox import CTkMessagebox
+
 
 def insert_student_record(roll, name, class_number, date, gender, phone_number, guardian_name, address, subjects):
     if gender == 0:
@@ -56,6 +57,7 @@ def fill_treeview(tree):
     data = cursor.fetchall()
     for i, row in enumerate(data):
         tree.insert('', i, values=row)
+
 
 def get_all_data():
     cursor.execute('SELECT * FROM STUDENT_RECORDS')

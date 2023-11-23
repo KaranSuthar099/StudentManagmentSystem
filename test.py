@@ -1,20 +1,16 @@
-import tkinter as tk
+import customtkinter
+from CTkTable import *
+from backend import get_all_data
 
-def create_window1(root):
-    root.destroy()
-    window1 = tk.Tk()
-    button = tk.Button(window1, text="Go to Window 2", command=lambda: create_window2(window1))
-    button.pack()
-    window1.mainloop()
+root = customtkinter.CTk()
 
-def create_window2(root):
-    root.destroy()
-    window2 = tk.Tk()
-    button = tk.Button(window2, text="Go to Window 1", command=lambda: create_window1(window2))
-    button.pack()
-    window2.mainloop()
+value = get_all_data()
 
-root = tk.Tk()
-button = tk.Button(root, text="Go to Window 1", command=lambda: create_window1(root))
-button.pack()
+scrollable_frame = customtkinter.CTkScrollableFrame(root, label_text="CTkScrollableFrame")
+scrollable_frame.grid(row=0, column=0, columnspan=9, padx=(20, 0), pady=(20, 0), sticky="nsew")
+scrollable_frame.grid_columnconfigure(0, weight=1)
+
+table = CTkTable(scrollable_frame, row=25, column=8, values=value)
+table.grid(sticky="nsew")  # Use grid instead of pack
+
 root.mainloop()
