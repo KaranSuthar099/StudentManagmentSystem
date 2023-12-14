@@ -44,11 +44,11 @@ def authenticate():
             if i[0] == roll_no:
                 val = i[0]
 
-        if val == 0:
+        if val == 0:  # roll not found
             CTkMessagebox(title="Error",
                           message="Oops! No data found .\nPlease check and try again",
                           icon="cancel", option_1="Retry")
-        else:
+        else:  # roll found
             login.destroy()
             create_student_window(val)
 

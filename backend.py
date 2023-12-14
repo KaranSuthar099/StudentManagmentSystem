@@ -48,18 +48,8 @@ def delete_student_record(roll):
         CTkMessagebox(title="Error", message="Something went wrong!!!", icon="cancel")
 
 
-def fill_treeview(tree):
-    # Clear existing data
-    for item in tree.get_children():
-        tree.delete(item)
-
-    cursor.execute('SELECT * FROM STUDENT_RECORDS')
-    data = cursor.fetchall()
-    for i, row in enumerate(data):
-        tree.insert('', i, values=row)
-
-
 def get_all_data():
+    mydb.commit()
     cursor.execute('SELECT * FROM STUDENT_RECORDS')
     data = cursor.fetchall()
     return data
