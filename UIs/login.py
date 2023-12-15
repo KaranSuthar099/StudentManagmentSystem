@@ -4,7 +4,7 @@ from CTkMessagebox import CTkMessagebox
 from Splash_Screen import show_splash_screen
 from center_window import center_window
 from backend import get_all_data
-from Admin_panel import create_student_window
+from Admin_panel import create_admin_window
 
 
 c.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
@@ -49,18 +49,17 @@ def authenticate():
                           message="Oops! No data found .\nPlease check and try again",
                           icon="cancel", option_1="Retry")
         else:  # roll found
-            login.destroy()
-            create_student_window(val)
+            CTkMessagebox(message="student login is successfully working.",
+                          icon="check", option_1="Thanks")
 
     elif user_login_choice.get() == 1:  # login as admin
         if admin_id_entry.get() == "admin" and password_entry.get() == "root":  # if the id and pass are correct
-            CTkMessagebox(title="Login Success!!", message="You have been successfully logged-In",
-                          icon="check", option_1="OK")
+            create_admin_window()
         else:  # if the password and id is false
             CTkMessagebox(title="Login Error",
                           message="Oops! Incorrect login details. Please check and try again",
                           icon="cancel", option_1="Retry")
-    else:
+    else:  # don't know the reason but still what if :)
         CTkMessagebox(title="Login Error",
                       message="Oops! Something went wrong ",
                       icon="cancel", option_1="Retry")

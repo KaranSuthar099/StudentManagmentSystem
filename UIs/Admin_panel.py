@@ -1,9 +1,10 @@
 import customtkinter as c
 from CTkTable import CTkTable
 from backend import *
+from center_window import center_window
 
 
-def create_student_window():
+def create_admin_window():
     root = c.CTk()
     root.title("Student Form")
     root.resizable(False, False)
@@ -165,4 +166,5 @@ def create_student_window():
 
     update_table(initial_data, table_widget)
 
+    center_window(root)
     root.mainloop()
