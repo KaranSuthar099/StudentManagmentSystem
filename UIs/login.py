@@ -54,6 +54,7 @@ def authenticate():
 
     elif user_login_choice.get() == 1:  # login as admin
         if admin_id_entry.get() == "admin" and password_entry.get() == "root":  # if the id and pass are correct
+            login.destroy()
             create_admin_window()
         else:  # if the password and id is false
             CTkMessagebox(title="Login Error",
