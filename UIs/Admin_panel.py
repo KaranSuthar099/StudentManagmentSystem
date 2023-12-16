@@ -17,7 +17,7 @@ def create_admin_window():
         frame = c.CTkFrame(root)
         frame.grid(row=1, column=0, sticky="news", padx=10, pady=10)
 
-        if value == "Delete":
+        if value == "Delete":  # create delete window
             # Roll Number Label and Entry
             roll_number_label = c.CTkLabel(frame, text="Roll Number to be deleted ")
             roll_number_label.grid(row=0, column=0, sticky="we", columnspan=3, padx=10, pady=(10, 0))
@@ -36,7 +36,7 @@ def create_admin_window():
             delete_button_button.grid(row=3, column=0, columnspan=3, sticky="we", padx=10, pady=10)
 
 
-        elif value == "Update":
+        elif value == "Update":  # create update window
             # Roll Number Label and Entry
             roll_number_label = c.CTkLabel(frame, text="Roll Number")
             roll_number_label.grid(row=0, column=0, sticky="w", padx=10, pady=(10, 0))
@@ -67,7 +67,7 @@ def create_admin_window():
                                              )
             update_data_button.grid(row=2, column=0, columnspan=2, sticky="we", padx=10, pady=10)
 
-        else:
+        else:  # create insert window
             # Create labels and entry fields
             roll_number_label = c.CTkLabel(frame, text="Roll Number")
             roll_number_label.grid(row=0, column=0, sticky="w", padx=10, pady=(10, 0))
@@ -141,6 +141,7 @@ def create_admin_window():
     for label in labels:
         label.grid(row=0, column=labels.index(label), sticky="we")
 
+    # to delete the data in realtime
     def update_table(previous_data, table):
         new_data = get_all_data()
 
