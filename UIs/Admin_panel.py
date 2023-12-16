@@ -1,7 +1,7 @@
 import customtkinter as c
 from CTkTable import CTkTable
-from backend import *
-from center_window import center_window
+from Backend.backend import *
+from Center_window import center_window
 
 
 def create_admin_window():

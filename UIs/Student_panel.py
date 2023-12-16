@@ -1,7 +1,7 @@
 # Import necessary modules
 import customtkinter as c
-from center_window import center_window
-from backend import get_student_data  # Import your backend function here
+from Center_window import center_window
+from Backend.backend import get_student_data  # Import your backend function here
 
 def create_student_panel(roll_number, username):
     root = c.CTk()

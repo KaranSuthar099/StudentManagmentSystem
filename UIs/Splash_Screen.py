@@ -1,5 +1,5 @@
 import customtkinter as c
-from center_window import center_window
+from Center_window import center_window
 
 c.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
 c.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"

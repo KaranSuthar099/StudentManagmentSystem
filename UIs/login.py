@@ -1,11 +1,10 @@
 import tkinter as tk
 import customtkinter as c
-from CTkMessagebox import CTkMessagebox
 from Splash_Screen import show_splash_screen
-from center_window import center_window
-from backend import *
+from Center_window import center_window
+from Backend.backend import *
 from Admin_panel import create_admin_window
-from student_panel import create_student_panel
+from Student_panel import create_student_panel
 
 c.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
 c.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"
