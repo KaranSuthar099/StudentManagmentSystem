@@ -12,7 +12,7 @@ def center_window(window):
 
     # Calculate the X and Y coordinates to center the window
     x = (screen_width - req_width) // 2
-    y = (screen_height - req_height*1.5) // 2
+    y = (screen_height - req_height) // 2
 
     # Set the position of the window
     window.geometry(f"+{x}+{y}")
