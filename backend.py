@@ -55,6 +55,19 @@ def get_all_data():
     data = cursor.fetchall()
     return data
 
+def get_student_data(roll):
+    mydb.commit()
+    cursor.execute('SELECT * FROM STUDENT_RECORDS')
+    data = cursor.fetchall()
+    student_data = ()
+    for i in data:
+        if i[0] == int(roll):
+            student_data = i
+            break
+
+    return student_data
+
+
 
 mydb = sql.connect(host="localhost", user="root", passwd="root")  # Establishing SQL connection
 

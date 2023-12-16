@@ -3,9 +3,9 @@ import customtkinter as c
 from CTkMessagebox import CTkMessagebox
 from Splash_Screen import show_splash_screen
 from center_window import center_window
-from backend import get_all_data
+from backend import *
 from Admin_panel import create_admin_window
-
+from student_panel import create_student_panel
 
 c.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
 c.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"
@@ -35,22 +35,19 @@ def change_widgets():
 
 def authenticate():
     if user_login_choice.get() == 0:  # login as a student
-        data = get_all_data()
-        print(data)
-        roll_no = int(roll_no_entry.get())
+        roll = roll_no_entry.get()
+        username = username_entry.get()
+        data = get_student_data(roll)
 
-        val = 0
-        for i in data:  # loop to see if roll no exists in database
-            if i[0] == roll_no:
-                val = i[0]
+        # data can be either () or the student data
+        if data == ():  # if data is ()
+            print("No data found with the corresponding roll number")
+            CTkMessagebox(title="Error", message="No data found for the Roll Number.", icon="cancel")
+        else:
+            login.destroy()
+            create_student_panel(roll, username)
 
-        if val == 0:  # roll not found
-            CTkMessagebox(title="Error",
-                          message="Oops! No data found .\nPlease check and try again",
-                          icon="cancel", option_1="Retry")
-        else:  # roll found
-            CTkMessagebox(message="student login is successfully working.",
-                          icon="check", option_1="Thanks")
+
 
     elif user_login_choice.get() == 1:  # login as admin
         if admin_id_entry.get() == "admin" and password_entry.get() == "root":  # if the id and pass are correct
@@ -60,7 +57,7 @@ def authenticate():
             CTkMessagebox(title="Login Error",
                           message="Oops! Incorrect login details. Please check and try again",
                           icon="cancel", option_1="Retry")
-    else:  # don't know the reason but still what if :)
+    else:  # don't know how this condition will be archived but still what if :)
         CTkMessagebox(title="Login Error",
                       message="Oops! Something went wrong ",
                       icon="cancel", option_1="Retry")
@@ -101,7 +98,7 @@ password_entry = c.CTkEntry(widget_frame, show="*", corner_radius=10)
 
 # Login Button
 login_button = c.CTkButton(login_frame, text="Login", width=250, fg_color="#138808",
-                           hover_color="#0E6606", corner_radius=50,  command=authenticate)
+                           hover_color="#0E6606", corner_radius=50, command=authenticate)
 login_button.grid(row=4, column=0, padx=10, pady=[50, 10], sticky="ew")
 
 change_widgets()
