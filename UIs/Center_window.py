@@ -1,5 +1,3 @@
-import tkinter as tk
-
 def center_window(window):
     # Get the screen resolution
     screen_width = window.winfo_screenwidth()
