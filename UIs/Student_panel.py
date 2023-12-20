@@ -3,6 +3,9 @@ import customtkinter as c
 from Center_window import center_window
 from Backend.backend import get_student_data  # Import your backend function here
 
+
+c.set_appearance_mode("Light")  # Modes: "System" (standard), "Dark", "Light"
+
 def create_student_panel(roll_number, username):
     root = c.CTk()
     root.title("Student Panel")
@@ -56,3 +59,5 @@ def create_student_panel(roll_number, username):
 
     center_window(root)
     root.mainloop()
+
+create_student_panel(1, "Karan Suthar")
