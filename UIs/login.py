@@ -6,7 +6,7 @@ from Backend.backend import *
 from Admin_panel import create_admin_window
 from Student_panel import create_student_panel
 
-c.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
+c.set_appearance_mode("Dark")  # Modes: "System" (standard), "Dark", "Light"
 c.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
 
