@@ -60,4 +60,3 @@ def create_student_panel(roll_number, username):
     center_window(root)
     root.mainloop()
 
-create_student_panel(1, "Karan Suthar")
